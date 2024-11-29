@@ -1,4 +1,6 @@
 const { Builder, By, Key, until } = require('selenium-webdriver')
+const config = require('./_const.js')
+
 const assert = require('assert')
 
 describe('Đăng nhập đúng thông tin', function() {
@@ -6,14 +8,14 @@ describe('Đăng nhập đúng thông tin', function() {
   let driver
   let vars
   beforeEach(async function() {
-    driver = await new Builder().forBrowser('MicrosoftEdge').build()
+    driver = await new Builder().forBrowser(config.browser).build()
     vars = {}
   })
   afterEach(async function() {
     // await driver.quit();
   })
   it('Đăng nhập đúng thông tin', async function() {
-    await driver.get("http://localhost:4002/index.php?page=signIn")
+    await driver.get(`${config.urlpath}/index.php?page=signIn`)
     await driver.findElement(By.id("email")).click()
     await driver.findElement(By.id("email")).sendKeys("thaovy3724@gmail.com")
     await driver.findElement(By.id("password")).click()
